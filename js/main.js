@@ -63,6 +63,20 @@ const peopleSortedByLastName = people.sort( (a, b) => {
 
 console.log(peopleSortedByLastName);
 
+//8. Reduce. Sum up the instances of each of these
+
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'bike'];
+
+const dataSum = data.reduce((total, item )=>{
+    if(!total[item]) {
+        total[item] = 0;
+    }
+    total[item]++;
+    return total;
+}, {});
+
+console.log(dataSum);
+
 
 
 
