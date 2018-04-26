@@ -24,4 +24,11 @@ console.log(inventorsFiltered);
 const inventorsMap = inventors.map(inventor => `${inventor.name} ${inventor.lastName}`);
 console.log(inventorsMap);
 
+//3. with sort, order by bithdate, oldest to youngest
+
+const inventorsSortedByBithday = inventors.sort((a , b) => a.year > b.year)
+
+console.log(inventorsSortedByBithday);
+
+
 
