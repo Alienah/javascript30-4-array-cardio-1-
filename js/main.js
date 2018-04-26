@@ -48,10 +48,21 @@ console.log(inventorsSortedByYearsOld);
 
 //6. Create a list of Boulevards in Paris that contain 'de' in the name http://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-const category = document.querySelector('.mw-category');
-const links = Array.from(category.querySelectorAll('a'));
+// const category = document.querySelector('.mw-category');
+// const links = Array.from(category.querySelectorAll('a'));
 
-const linksWithDe = links.map(link => link.outerText).filter(name => name.includes('de'));
+// const linksWithDe = links.map(link => link.outerText).filter(name => name.includes('de'));
+
+//7. Sort people list by lastName
+
+const peopleSortedByLastName = people.sort( (a, b) => {
+    const [aLast, aName] = a.split(', ');
+    const [bLast, bName] = b.split(', ');
+    return aLast > bLast ? 1 : -1;
+});
+
+console.log(peopleSortedByLastName);
+
 
 
 
