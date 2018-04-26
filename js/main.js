@@ -8,10 +8,6 @@ const inventors = [
     { name: 'Max', lastName: 'Planck', year: 1858, passed: 1943 },
 ];
 
-const people = [
-    'Beck, Glenn', 'Beckett, Samuel', 'Beddoes, Mick', 'Beethoven, Ludwig', 'Begin, Menachen', 'Belloc, Hilarie', 'Bellow, Saul', 'Beneson, Peter', 'Albarrán, Aida', 'Ben-Curion, David'
-];
-
 //1. Filter the inventors list for those who were born in the 1500
 
 console.log(inventors);
@@ -26,25 +22,25 @@ console.log(inventorsMap);
 
 //3. with sort, order by bithdate, oldest to youngest
 
-const inventorsSortedByBithday = inventors.sort((a , b) => a.year > b.year)
+const inventorsSortedByBithday = inventors.sort((a , b) => a.year > b.year ? 1 : -1);
 
 console.log(inventorsSortedByBithday);
 
-//4. Reduce. How many years did the inventor live?
+// 4. Reduce. How many years did the inventor live?
 
-const totalYears = inventors.reduce((total, inventor) => {
-    return total + (inventor.passed - inventor.year);
+const totalYears = inventors.reduce((accumulator, inventor) => {
+    return accumulator + (inventor.passed - inventor.year);
 },0);
 
 console.log(totalYears);
 
-//5. Sorte by years live
+//5. Sorted by years live
 
-const inventorsSortedByYearsOld = inventors.sort((a , b) => 
-    a.passed - a.year > b.passed - b.year
-);
+// const inventorsSortedByYearsOld = inventors.sort((inventorA , inventorB) => 
+//     inventorA.passed - inventorA.year > inventorB.passed - inventorB.year ? 1 : -1
+// );
 
-console.log(inventorsSortedByYearsOld);
+// console.log(inventorsSortedByYearsOld);
 
 //6. Create a list of Boulevards in Paris that contain 'de' in the name http://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
@@ -53,26 +49,58 @@ console.log(inventorsSortedByYearsOld);
 
 // const linksWithDe = links.map(link => link.outerText).filter(name => name.includes('de'));
 
+const people = [
+    'Beck, Glenn', 'Beddoes, Mick', 'Beethoven, Ludwig', 'Beckett, Samuel', 'Begin, Menachen', 'Bellow, Saul', 'Bellow, Hilarie', 'Beneson, Peter', 'Albarrán, Aida', 'Ben-Curion, David'
+];
+
 //7. Sort people list by lastName
 
-const peopleSortedByLastName = people.sort( (a, b) => {
-    const [aLast, aName] = a.split(', ');
-    const [bLast, bName] = b.split(', ');
-    return aLast > bLast ? 1 : -1;
+const peopleSortedByLastName = people.sort( (personA, personB) => {
+    const personALastName = personA.split(', ')[0];
+    const personBLastName = personB.split(', ')[0];
+    return personALastName > personBLastName ? 1 : -1;
 });
 
 console.log(peopleSortedByLastName);
+
+//If we want to sort by last and firstname:
+
+const alpha = people.sort(function (personA, personB) {
+    const personALastName = personA.split(', ')[0];
+    const personBLastName = personB.split(', ')[0];
+
+    if (personALastName > personBLastName) {
+        return 1;
+
+    } else if (personALastName < personBLastName) {
+        return -1;
+
+    } else {
+        const personAFirstName = personA.split(', ')[1];
+        const personBFirstName = personB.split(', ')[1];
+
+        if (personAFirstName > personBFirstName) {
+            return 1;
+
+        } else if (personAFirstName < personBFirstName) {
+            return -1;
+        }
+    }
+});
+
+console.log(alpha);
+
 
 //8. Reduce. Sum up the instances of each of these
 
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'bike'];
 
-const dataSum = data.reduce((total, item )=>{
-    if(!total[item]) {
-        total[item] = 0;
+const dataSum = data.reduce((accumulator, currentValue )=>{
+    if(!accumulator.hasOwnProperty(currentValue)) {
+        accumulator[currentValue] = 0;
     }
-    total[item]++;
-    return total;
+    accumulator[currentValue]++;
+    return accumulator;
 }, {});
 
 console.log(dataSum);
