@@ -19,3 +19,9 @@ const inventorsFiltered = inventors.filter(inventor => inventor.year >= 1500 && 
    
 console.log(inventorsFiltered);
 
+//2. With map, get an array of the inventory first and last names
+
+const inventorsMap = inventors.map(inventor => `${inventor.name} ${inventor.lastName}`);
+console.log(inventorsMap);
+
+
