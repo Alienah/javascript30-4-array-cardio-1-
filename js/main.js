@@ -30,5 +30,12 @@ const inventorsSortedByBithday = inventors.sort((a , b) => a.year > b.year)
 
 console.log(inventorsSortedByBithday);
 
+//4. Reduce. How many years did the inventor live?
+
+const totalYears = inventors.reduce((total, inventor) => {
+    return total + (inventor.passed - inventor.year);
+},0);
+
+console.log(totalYears);
 
 
